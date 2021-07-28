@@ -1,0 +1,32 @@
+{
+  "version": "13.0.0",
+  "files": {
+    "dec39733c23e07b3b112a5263826a1bb88f3c22ab4be19bbf525b4257e764c9a": {
+      "source": {
+        "path": "/Users/darinmilner/Desktop/Spaces-CDK-backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "dec39733c23e07b3b112a5263826a1bb88f3c22ab4be19bbf525b4257e764c9a.zip",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    },
+    "a44944e8c42e3ed75d4e5409ff52959cd5761db1be8681bf78316fc5c0dda130": {
+      "source": {
+        "path": "Space-finder.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "a44944e8c42e3ed75d4e5409ff52959cd5761db1be8681bf78316fc5c0dda130.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
