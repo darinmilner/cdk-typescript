@@ -1,0 +1,37 @@
+@endpoint = https://0xdykhzqub.execute-api.us-east-1.amazonaws.com/prod/
+
+GET {{endpoint}}/hello/
+###
+
+GET {{endpoint}}/spaces/
+###
+
+GET {{endpoint}}/spaces?spaceId=85916c03-fdce-4ba5-a43c-4c778a6ea36a
+###
+
+GET {{endpoint}}/spaces?spaceId=342df82d-2c01-4501-9b19-a6a69def7024
+###
+
+DELETE {{endpoint}}/spaces?spaceId=342df82d-2c01-4501-9b19-a6a69def7024
+###
+
+PUT {{endpoint}}/spaces?spaceId=85916c03-fdce-4ba5-a43c-4c778a6ea36a
+
+Content-Type: application/json
+
+{
+    "name" : "Mesjid AlNabawi"
+}
+###
+
+GET {{endpoint}}/spaces?location=Istanbul
+###
+
+POST {{endpoint}}/spaces/
+Content-Type: application/json
+
+{
+    "location" : "Istanbul",
+    "name" : "Home of Ottoman History and Aya Sofia"
+}
+###
