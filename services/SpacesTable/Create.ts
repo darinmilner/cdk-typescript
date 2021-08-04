@@ -1,5 +1,9 @@
 import { DynamoDB } from "aws-sdk";
-import { v4 } from "uuid";
+import { generateRandomId, getEventBody } from "../Shared/Utils";
+import {
+  MissingFieldError,
+  validateSpaceEntry,
+} from "../Shared/InputValidator";
 import {
   APIGatewayProxyEvent,
   APIGatewayProxyResult,
@@ -18,22 +22,29 @@ async function handler(
     body: "Hello from DyanmoDB",
   };
 
-  const item =
-    typeof event.body == "object" ? event.body : JSON.parse(event.body);
-
-  item.spaceId = v4();
-
   try {
+    const item = getEventBody(event);
+
+    item.spaceId = generateRandomId();
+    validateSpaceEntry(item);
+
     await dbClient
       .put({
         TableName: TABLENAME!,
         Item: item,
       })
       .promise();
+
+    result.body = JSON.stringify(`Created item with ID ${item.spaceId}`);
   } catch (error) {
+    if (error instanceof MissingFieldError) {
+      result.statusCode = 403;
+    } else {
+      result.statusCode = 500;
+    }
+
     result.body = error.message;
   }
-  result.body = JSON.stringify(`Created item with ID ${item.spaceId}`);
 
   return result;
 }

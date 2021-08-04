@@ -18,18 +18,22 @@ async function handler(
     body: "Hello from DyanmoDB",
   };
 
-  const spaceId = event.queryStringParameters?.[PRIMARYKEY];
+  try {
+    const spaceId = event.queryStringParameters?.[PRIMARYKEY];
 
-  if (spaceId) {
-    const deleteResult = await dbClient
-      .delete({
-        TableName: TABLENAME,
-        Key: {
-          [PRIMARYKEY]: spaceId,
-        },
-      })
-      .promise();
-    result.body = JSON.stringify(deleteResult);
+    if (spaceId) {
+      const deleteResult = await dbClient
+        .delete({
+          TableName: TABLENAME,
+          Key: {
+            [PRIMARYKEY]: spaceId,
+          },
+        })
+        .promise();
+      result.body = JSON.stringify(deleteResult);
+    }
+  } catch (error) {
+    result.body = error.message;
   }
   return result;
 }
